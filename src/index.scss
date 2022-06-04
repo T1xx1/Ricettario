@@ -1,0 +1,66 @@
+@use '../../Sasscript/sass/index.scss';
+
+:root {
+   color: index.$black;
+   color-scheme: light;
+}
+
+body#index {
+   header {
+      @include index.flex();
+
+      align-items: center;
+      flex-direction: column;
+
+      >h1 {
+         font-size: 3.5rem
+      }
+   }
+
+   main {
+      @include index.flex();
+
+      justify-content: center;
+
+      >* {
+         margin: 0 10px 10px 0;
+      }
+   }
+
+   #add {
+      bottom: 25px;
+      display: flex;
+      padding: 0;
+      position: absolute;
+      left: 25px;
+
+      >img {
+         aspect-ratio: 1 / 1;
+         height: 50px;
+      }
+   }
+
+   .favourite {
+      color: #01ee01;
+   }
+
+   .new {
+      color: index.$blue;
+   }
+
+   .neverdone {
+      color: index.$red;
+   }
+}
+
+body#add {
+   @include index.flex();
+
+   align-items: stretch;
+   flex-direction: column;
+   text-align: center;
+
+   *:not(#done) {
+      margin-bottom: 15px;
+   }
+}

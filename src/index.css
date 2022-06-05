@@ -1,5 +1,6 @@
 /* Sasscript */
-@import 'https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Oxygen&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Poppins&display=swap';
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 * {
@@ -15,7 +16,7 @@
 }
 
 html {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 body {
@@ -26,8 +27,8 @@ body {
 }
 body:after {
   bottom: 5px;
-  content: "Sasscript 0.1.0";
-  font-size: 0.45rem;
+  content: "Sasscript 1.1.0";
+  font-size: 0.4rem;
   position: absolute;
   right: 5px;
 }
@@ -96,6 +97,7 @@ footer {
 
 header {
   margin: 0.5rem 0.9rem;
+  margin-right: 0;
   margin-left: 0;
 }
 
@@ -390,13 +392,6 @@ time {
   border-radius: 3px;
 }
 
-button > img {
-  border: 0;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
-}
-
 code pre {
   background-color: inherit;
   color: inherit;
@@ -498,6 +493,19 @@ body#index header {
 body#index header > h1 {
   font-size: 3.5rem;
 }
+body#index header > nav {
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  box-shadow: 1.3px 1.3px 0 currentColor;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+body#index header > nav > * {
+  border: 0;
+  box-shadow: none;
+}
 body#index main {
   display: flex;
   flex-wrap: wrap;
@@ -507,15 +515,22 @@ body#index main > * {
   margin: 0 10px 10px 0;
 }
 body#index #add {
-  bottom: 25px;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   padding: 0;
+  background-color: #ffffff;
+  bottom: 20px;
   position: absolute;
-  left: 25px;
+  left: 20px;
 }
 body#index #add > img {
   aspect-ratio: 1/1;
   height: 50px;
+}
+body#index #add:hover {
+  background-color: #cfcfcf;
 }
 body#index .favourite {
   color: #01ee01;

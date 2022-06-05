@@ -23,27 +23,25 @@
          let name = document.querySelector('input[type="text"]').value;
 
          if (name) {
-            let category = select.options[select.selectedIndex].innerHTML.toLowerCase();
+            let list = select.options[select.selectedIndex].innerHTML.toLowerCase();
             let link = document.querySelector('input[type="url"]').value;
             let recipe = {};
 
-            if (category !== 'none') recipe['category'] = category;
+            if (list !== 'none') recipe.list = list;
 
             recipe.date = new Date().toLocaleDateString('it', {
                day: '2-digit',
                month: '2-digit',
                year: 'numeric'
             });
-            recipe.name = name[0].toUpperCase() + name.slice(1);
+            recipe.link = link;
 
-            if (link) recipe['link'] = link;
-
-            preload.recipes.add(recipe);
+            preload.recipes.add(name[0].toUpperCase() + name.slice(1), recipe);
             preload.window('close');
          }
       });
 
-      preload.recipes.categories.forEach(category => select.innerHTML += `<option>${category}</option>`);
+      preload.recipes.lists.forEach(list => select.innerHTML += `<option>${list}</option>`);
    </script>
 </body>
 

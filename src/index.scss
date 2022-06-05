@@ -1,13 +1,13 @@
-@use '../../Sasscript/sass/index.scss';
+@use '../../Sasscript/sass/sasscript.scss';
 
 :root {
-   color: index.$black;
+   color: sasscript.$black;
    color-scheme: light;
 }
 
 body#index {
    header {
-      @include index.flex();
+      @include sasscript.flex;
 
       align-items: center;
       flex-direction: column;
@@ -15,10 +15,23 @@ body#index {
       >h1 {
          font-size: 3.5rem
       }
+
+      >nav {
+         @include sasscript.border;
+         @include sasscript.flex;
+
+         align-items: center;
+         justify-content: space-between;
+
+         >* {
+            border: 0;
+            box-shadow: none;
+         }
+      }
    }
 
    main {
-      @include index.flex();
+      @include sasscript.flex;
 
       justify-content: center;
 
@@ -27,16 +40,16 @@ body#index {
       }
    }
 
-   #add {
-      bottom: 25px;
-      display: flex;
-      padding: 0;
-      position: absolute;
-      left: 25px;
+   #add {     
+      @include sasscript.buttonimg(50px);
 
-      >img {
-         aspect-ratio: 1 / 1;
-         height: 50px;
+      background-color: sasscript.$white;
+      bottom: 20px;
+      position: absolute;
+      left: 20px;
+
+      &:hover {
+         background-color: sasscript.$highlight;
       }
    }
 
@@ -45,16 +58,16 @@ body#index {
    }
 
    .new {
-      color: index.$blue;
+      color: sasscript.$blue;
    }
 
    .neverdone {
-      color: index.$red;
+      color: sasscript.$red;
    }
 }
 
 body#add {
-   @include index.flex();
+   @include sasscript.flex;
 
    align-items: stretch;
    flex-direction: column;

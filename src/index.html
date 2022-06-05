@@ -27,7 +27,7 @@
       let main = document.querySelector('main');
       let select = document.querySelector('select');
 
-      let search = (string = input.value, category = select.selectedOptions[0].innerHTML) => {
+      let search = (string = input.value, list = select.options[select.selectedIndex].innerHTML) => {
          let hide = button => {
             button.setAttribute('hidden', '');
          };
@@ -35,17 +35,17 @@
             button.removeAttribute('hidden');
          };
 
-         category = category.toLowerCase();
+         list = list.toLowerCase();
 
-         input.className = category;
-         select.className = category;
+         input.className = list;
+         select.className = list;
 
          main.childNodes.forEach(button => {
             if (button.innerHTML.toLowerCase().includes(string.toLowerCase())) {
-               if (category === 'none') {
+               if (list === 'none') {
                   show(button);
                } else {
-                  if (category === button.className) {
+                  if (list === button.className) {
                      show(button);
                   } else hide(button);
                }
@@ -53,16 +53,16 @@
          });
       };
       let load = () => {
-         preload.recipes.array.forEach(recipe => {
+         for (let recipe in preload.recipes.obj) {
             let button = document.createElement('button');
 
-            button.innerHTML = recipe.name;
+            button.innerHTML = recipe;
+            button.addEventListener('click', () => window.open(preload.recipes.obj[recipe].link));
 
-            if (recipe.link) button.addEventListener('click', () => window.open(recipe.name));
-            if (recipe.category) button.className = recipe.category;
+            if (preload.recipes.obj[recipe].list) button.className = preload.recipes.obj[recipe].list;
 
             main.appendChild(button);
-         });
+         }
       };
 
       add.addEventListener('click', () => preload.window('open-add'));
@@ -85,7 +85,7 @@
       input.addEventListener('keyup', () => search());
       select.addEventListener('click', () => search());
 
-      preload.recipes.categories.forEach(category => select.innerHTML += `<option>${category}</option>`);
+      preload.recipes.lists.forEach(list => select.innerHTML += `<option>${list}</option>`);
 
       load();
    </script>

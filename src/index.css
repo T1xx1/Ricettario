@@ -5,9 +5,9 @@
 @import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 * {
   box-sizing: border-box;
-  font-family: "Poppins";
+  font-family: "Montserrat";
   scroll-behavior: smooth;
-  transition: all 0.2s;
+  transition: all 0.1s linear;
 }
 
 :root {
@@ -17,20 +17,22 @@
 
 html {
   min-height: 100vh;
+  min-width: 100vw;
 }
 
 body {
-  margin: 0;
   min-height: 100vh;
-  padding: 0.5rem 0.9rem;
-  padding-bottom: 2rem;
+  min-width: 100vw;
+  margin: 0;
+  padding: 0.6rem 0.9rem;
+  padding-bottom: 1.7rem;
 }
 body:after {
-  bottom: 5px;
-  content: "Sasscript 1.1.0";
+  bottom: 1px;
+  content: "Sasscript 1.2.0";
   font-size: 0.4rem;
-  position: absolute;
-  right: 5px;
+  right: 1px;
+  position: fixed;
 }
 
 h1,
@@ -43,11 +45,11 @@ h6 {
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 h3 {
@@ -70,8 +72,8 @@ hr {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
-  height: 8px;
+  padding: 0.3rem 0.5rem;
+  height: 15px;
 }
 
 article {
@@ -79,40 +81,40 @@ article {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
 }
 
 aside {
   float: right;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   width: fit-content;
 }
 
 footer {
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   margin-left: 0;
   margin-right: 0;
 }
 
 header {
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   margin-right: 0;
   margin-left: 0;
 }
 
 main {
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
 }
 
 mark {
   background-color: #ffff00;
   border-radius: 6px;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 nav {
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
 }
 
 summary {
@@ -124,13 +126,10 @@ ul {
   margin: 0;
 }
 
-ol {
-  padding-left: 30px;
+ol, ul {
+  padding-left: 25px;
 }
 
-ul {
-  padding-left: 30px;
-}
 ul li {
   list-style-type: disc;
 }
@@ -143,7 +142,7 @@ ul li {
 }
 
 abbr[title] {
-  text-decoration: underline dotted #008000;
+  text-decoration: underline dotted #008000 3px;
 }
 
 address {
@@ -151,7 +150,7 @@ address {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
 }
 
@@ -160,48 +159,52 @@ blockquote {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
 }
 
-button {
+button, [button],
+[buttons] > * {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   background-color: transparent;
-  border-color: currentColor;
   cursor: pointer;
   font-size: 1rem;
 }
-button:disabled {
-  border-color: #cfcfcf;
-  color: #cfcfcf;
+button:disabled, [button]:disabled,
+[buttons] > :disabled {
+  border-color: #f0f0f0;
+  color: #f0f0f0;
   cursor: not-allowed;
 }
-button:hover:not(:disabled) {
-  background-color: #cfcfcf;
+button:hover, [button]:hover,
+[buttons] > :hover {
+  background-color: #f0f0f0;
 }
-button[type=reset] {
+button[type=reset], [type=reset][button],
+[buttons] > [type=reset] {
   border-color: #ff0000;
   color: #ff0000;
 }
-button[type=submit] {
+button[type=submit], [type=submit][button],
+[buttons] > [type=submit] {
   border-color: #008000;
   color: #008000;
 }
 
 code {
-  background-color: #cfcfcf;
+  background-color: #f0f0f0;
   border-radius: 6px;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 del {
   background-color: #ff0000;
   border-radius: 6px;
   color: #ffffff;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   text-decoration: none;
 }
 
@@ -210,7 +213,7 @@ dialog {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
   background-color: #ffffff;
 }
@@ -220,7 +223,7 @@ fieldset {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
 }
 
@@ -229,7 +232,7 @@ form {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
   text-align: center;
 }
@@ -239,7 +242,7 @@ iframe {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
 }
 
@@ -247,7 +250,7 @@ input {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   background-color: transparent;
   font-size: 1rem;
   outline: 0;
@@ -284,20 +287,20 @@ input[type=reset] {
   cursor: pointer;
 }
 input[type=reset]:hover {
-  background-color: #cfcfcf;
+  background-color: #f0f0f0;
 }
 input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: #cfcfcf;
+  background-color: #f0f0f0;
 }
 
 kbd {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 meter {
@@ -309,9 +312,7 @@ progress {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
   height: 20px;
-  padding: 0;
   width: 200px;
 }
 
@@ -319,7 +320,7 @@ select {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   font-size: 1rem;
 }
@@ -333,21 +334,22 @@ table {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   border-radius: 6px;
-  margin: 0.5rem 0.9rem;
+  margin: 0.6rem 0.9rem;
   padding: 8px 12.5px;
   border-collapse: collapse;
 }
 
 td {
   border: 2.5px solid currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 textarea {
   border: 2.5px solid currentColor;
-  border-radius: 10px;
+  border-radius: 6px;
+  box-shadow: 1.3px 1.3px 0 currentColor;
   font-size: 1rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 textarea:focus-visible {
@@ -356,7 +358,7 @@ textarea:focus-visible {
 
 th {
   border: 2.5px solid currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   text-align: center;
 }
 
@@ -372,14 +374,14 @@ time {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   cursor: pointer;
   font-size: 1rem;
   margin-bottom: 2px;
 }
 
 ::-webkit-file-upload-button:hover {
-  background-color: #cfcfcf;
+  background-color: #f0f0f0;
 }
 
 ::-webkit-progress-bar {
@@ -397,17 +399,6 @@ code pre {
   color: inherit;
   display: inline;
   margin: 0;
-}
-
-dialog[fullscreen],
-[fullscreens] > dialog {
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  margin: 0;
-  min-height: 100vh;
-  min-width: 100vw;
-  top: 0;
 }
 
 form fieldset:only-child {
@@ -428,7 +419,7 @@ details[block] {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 details[block]:not([open]) {
   width: fit-content;
@@ -447,29 +438,14 @@ table[crossed] tr:first-child {
   border-bottom: 2.5px solid currentColor;
 }
 
-[bubble]:hover,
-[bubbles] > :hover {
-  background-color: #cfcfcf;
-  border-radius: 6px;
-  padding: 0.2rem 0.5rem;
-}
-
 [button],
 [buttons] > * {
-  border: 2.5px solid currentColor;
-  border-radius: 6px;
-  box-shadow: 1.3px 1.3px 0 currentColor;
-  padding: 0.2rem 0.5rem;
-  cursor: pointer;
-  margin: 0.5rem 0.9rem;
-  margin-bottom: 7px;
-  margin-left: 0;
+  margin: 10px 0 0 10px;
   text-decoration: none;
 }
-
-[highlight]:hover,
-[highlights] > :hover {
-  background-color: #cfcfcf;
+[button]:hover,
+[buttons] > *:hover {
+  background-color: transparent;
 }
 
 svg {
@@ -478,68 +454,9 @@ svg {
   stroke-width: 2px;
 }
 
-/**/
 :root {
   color: #000000;
   color-scheme: light;
-}
-
-body#index header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  flex-direction: column;
-}
-body#index header > h1 {
-  font-size: 3.5rem;
-}
-body#index header > nav {
-  border: 2.5px solid currentColor;
-  border-radius: 6px;
-  box-shadow: 1.3px 1.3px 0 currentColor;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-body#index header > nav > * {
-  border: 0;
-  box-shadow: none;
-}
-body#index main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-body#index main > * {
-  margin: 0 10px 10px 0;
-}
-body#index #add {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  background-color: #ffffff;
-  bottom: 20px;
-  position: absolute;
-  left: 20px;
-}
-body#index #add > img {
-  aspect-ratio: 1/1;
-  height: 50px;
-}
-body#index #add:hover {
-  background-color: #cfcfcf;
-}
-body#index .favourite {
-  color: #01ee01;
-}
-body#index .new {
-  color: #0000ff;
-}
-body#index .neverdone {
-  color: #ff0000;
 }
 
 body#add {
@@ -551,6 +468,98 @@ body#add {
 }
 body#add *:not(#done) {
   margin-bottom: 15px;
+}
+
+body#edit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex-direction: column;
+}
+body#edit > div {
+  cursor: text;
+  outline: 0;
+}
+body#edit > #done {
+  margin-bottom: 15px;
+}
+
+body#index header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+body#index header > h1 {
+  background: linear-gradient(90deg, #067bc2 10%, #84bcda 30%, #ecc30b 50%, #f37748 70%, #cc3e40 90%);
+  font-size: 3.5rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body#index header > nav {
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  box-shadow: 1.3px 1.3px 0 currentColor;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+body#index header > nav > * {
+  border: 0;
+  box-shadow: none;
+  color: inherit;
+}
+body#index header > nav:not([class]) > * {
+  background: linear-gradient(90deg, #067bc2 10%, #84bcda 30%, #ecc30b 50%, #f37748 70%, #cc3e40 90%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body#index main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body#index main > * {
+  margin: 0 10px 10px 0;
+}
+body#index #buttons {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  bottom: 15px;
+  position: fixed;
+  left: 15px;
+  width: 100%;
+}
+body#index #buttons > button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  margin-right: 15px;
+}
+body#index #buttons > button > img {
+  aspect-ratio: 1/1;
+  height: 40px;
+}
+body#index .mai {
+  color: #cc3e40;
+}
+body#index .nuove {
+  color: #067bc2;
+}
+body#index .preferite {
+  color: #ecc30b;
+}
+
+body#offline {
+  padding: 0;
+}
+body#offline img {
+  height: 100%;
+  width: 100%;
 }
 
 /*# sourceMappingURL=index.css.map */

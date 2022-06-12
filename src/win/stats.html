@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Stats</title>
+   <link rel="stylesheet" href="../index.css">
+</head>
+
+<body id="stats">
+   <h1>Stats</h1>
+   <ul></ul>
+   <script>
+      let ul = document.querySelector('ul');
+
+      for (let stat in preload.stats) ul.innerHTML += `<li>${stat}: ${preload.stats[stat]}</li>`;
+   </script>
+</body>
+
+</html>

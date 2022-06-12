@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ricettario</title>
+   <link rel="stylesheet" href="../index.css">
+</head>
+
+<body id="index">
+   <header>
+      <h1>Ricettario</h1>
+      <nav>
+         <input type="text" autofocus placeholder="Cerca una ricetta...">
+         <select></select>
+      </nav>
+   </header>
+   <main></main>
+   <div id="buttons">
+      <button id="add" title="Aggiungi">
+         <img src="../assets/img/add.png" alt="Aggiungi">
+      </button>
+      <button id="edit" title="Modifica">
+         <img src="../assets/img/edit.png" alt="Modifica">
+      </button>
+      <button id="stats" title="Statistiche">
+         <img src="../assets/img/stats.png" alt="Statistiche">
+      </button>
+   </div>
+   <script>
+      let buttons = document.querySelector('#buttons');
+      let html = document.querySelector('html');
+      let input = document.querySelector('input');
+      let main = document.querySelector('main');
+      let nav = document.querySelector('nav');
+      let select = document.querySelector('select');
+
+      let search = (string = input.value, list = select.options[select.selectedIndex].innerHTML) => {
+         let hide = button => {
+            button.setAttribute('hidden', '');
+         };
+         let show = button => {
+            button.removeAttribute('hidden');
+         };
+
+         list = list.toLowerCase();
+
+         if (list === 'nessuna') {
+            nav.removeAttribute('class');
+         } else nav.className = list;
+
+         main.childNodes.forEach(button => {
+            if (button.innerHTML.toLowerCase().includes(string.toLowerCase())) {
+               if (list === preload.recipes.lists[0]) {
+                  show(button);
+               } else {
+                  if (list === button.className) {
+                     show(button);
+                  } else hide(button);
+               }
+            } else hide(button);
+         });
+      };
+
+      buttons.addEventListener('click', event => {
+         let e = event.target;
+
+         if (e.localName === 'img') e = e.parentNode;
+
+         preload.window('open', e.id);
+      });
+      html.addEventListener('keyup', event => {
+         if (event.ctrlKey) {
+            switch (event.key) {
+               case 'e':
+                  preload.window('open', 'edit');
+
+                  break;
+               case 'z':
+                  preload.window('open', 'add');
+
+                  break;
+               case 'arrowup':
+                  window.scrollTo(0, 0);
+
+                  break;
+            }
+         } else switch (event.key) {
+            case '/':
+               input.focus();
+
+               break;
+         }
+      });
+      input.addEventListener('keyup', () => search());
+      select.addEventListener('click', () => search());
+
+      preload.recipes.lists.forEach(list => select.innerHTML += `<option>${list}</option>`);
+
+      for (let recipe in preload.recipes.obj()) {
+         let button = document.createElement('button');
+
+         button.innerHTML = recipe;
+         button.addEventListener('click', () => {console.log(window.navigator.onLine)
+            if (window.navigator.onLine) {
+               window.open(preload.recipes.obj()[recipe].link);
+            } else preload.window('open', 'offline');
+         });
+
+         if (preload.recipes.obj()[recipe].list) button.className = preload.recipes.obj()[recipe].list;
+
+         main.appendChild(button);
+      }
+   </script>
+</body>
+
+</html>

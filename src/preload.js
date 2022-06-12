@@ -15,10 +15,18 @@ contextBridge.exposeInMainWorld('preload', {
 
          writeFileSync(path.recipes, JSON.stringify(recipes, null, 3), 'utf8');
       },
-      obj: JSON.parse(readFileSync(path.recipes, 'utf8')),
-      lists: JSON.parse(readFileSync(join(__dirname, 'database/recipes/lists.json'), 'utf8'))
+      edit: obj => {
+         try {
+            writeFileSync(path.recipes, JSON.stringify(obj, null, 3), 'utf8');
+         } catch {}
+      },
+      lists: JSON.parse(readFileSync(join(__dirname, 'database/recipes/lists.json'), 'utf8')),
+      obj: () => {
+         return JSON.parse(readFileSync(path.recipes, 'utf8'));
+      }
    },
-   window: action => {
-      ipcRenderer.send('window', action);
+   stats: JSON.parse(readFileSync(join(__dirname, 'database/stats.json'), 'utf8')),
+   window: (action, win) => {
+      ipcRenderer.send('window', action, win);
    }
 });

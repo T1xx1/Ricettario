@@ -1,37 +1,83 @@
-@use '../../Sasscript/sass/sasscript.scss';
+@use '../../Sasscript/scss/SS.scss';
+
+$dark-sky-blue: #84bcda;
+$madder-lake: #cc3e40;
+$jonquil: #ecc30b;
+$mandarin: #f37748;
+$star-command-blue: #067bc2;
+
+$gradient: linear-gradient(90deg, $star-command-blue 10%, $dark-sky-blue 30%, $jonquil 50%, $mandarin 70%, $madder-lake 90%);
 
 :root {
-   color: sasscript.$black;
+   color: SS.$black;
    color-scheme: light;
+}
+
+body#add {
+   @include SS.flex;
+
+   align-items: stretch;
+   flex-direction: column;
+   text-align: center;
+
+   *:not(#done) {
+      margin-bottom: 15px;
+   }
+}
+
+body#edit {
+   @include SS.flex;
+
+   align-items: stretch;
+   flex-direction: column;
+
+   >div {
+      cursor: text;
+      outline: 0;
+   }
+
+   >#done {
+      margin-bottom: 15px;
+   }
 }
 
 body#index {
    header {
-      @include sasscript.flex;
+      @include SS.flex;
 
       align-items: center;
       flex-direction: column;
+      margin-bottom: 20px;
 
       >h1 {
-         font-size: 3.5rem
+         background: $gradient;
+         font-size: 3.5rem;
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
       }
 
       >nav {
-         @include sasscript.border;
-         @include sasscript.flex;
+         @include SS.border;
+         @include SS.flex;
 
-         align-items: center;
-         justify-content: space-between;
+         margin: 0;
 
          >* {
             border: 0;
             box-shadow: none;
+            color: inherit;
+         }
+
+         &:not([class])>* {
+            background: $gradient;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
          }
       }
    }
 
    main {
-      @include sasscript.flex;
+      @include SS.flex;
 
       justify-content: center;
 
@@ -40,40 +86,40 @@ body#index {
       }
    }
 
-   #add {     
-      @include sasscript.buttonimg(50px);
+   #buttons {
+      @include SS.flex;
 
-      background-color: sasscript.$white;
-      bottom: 20px;
-      position: absolute;
-      left: 20px;
+      background-color: SS.$white;
+      bottom: 15px;
+      position: fixed;
+      left: 15px;
+      width: 100%;
 
-      &:hover {
-         background-color: sasscript.$highlight;
+      >button {
+         @include SS.buttonimg;
+
+         margin-right: 15px;
       }
    }
 
-   .favourite {
-      color: #01ee01;
+   .mai {
+      color: $madder-lake;
    }
 
-   .new {
-      color: sasscript.$blue;
+   .nuove {
+      color: $star-command-blue;
    }
 
-   .neverdone {
-      color: sasscript.$red;
+   .preferite {
+      color: $jonquil;
    }
 }
 
-body#add {
-   @include sasscript.flex;
+body#offline {
+   padding: 0;
 
-   align-items: stretch;
-   flex-direction: column;
-   text-align: center;
-
-   *:not(#done) {
-      margin-bottom: 15px;
+   img {
+      height: 100%;
+      width: 100%;
    }
 }

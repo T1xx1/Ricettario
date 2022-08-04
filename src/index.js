@@ -13,7 +13,7 @@ const createWindow = () => {
       width: 900,
       height: 700,
       autoHideMenuBar: true,
-      icon: join(__dirname, 'assets/icons/favicon.ico'),
+      icon: join(__dirname, 'assets/ico/favicon.ico'),
       webPreferences: {
          preload: join(__dirname, 'preload'),
       },
@@ -23,7 +23,7 @@ const createWindow = () => {
    mainWindow.loadFile(join(__dirname, 'win/index.html'));
 
    // Open the DevTools.
-   //mainWindow.webContents.openDevTools();
+   mainWindow.webContents.openDevTools();
 
    let window = {
       add: () => {
@@ -42,8 +42,8 @@ const createWindow = () => {
       },
       edit: () => {
          const editWindow = new BrowserWindow({
-            width: 900,
-            height: 700,
+            width: 1000,
+            height: 600,
             autoHideMenuBar: true,
             parent: mainWindow,
             webPreferences: {
@@ -138,4 +138,4 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
-require(join(__dirname, 'storage'));
+require(join(__dirname, 'update'));

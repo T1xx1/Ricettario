@@ -12,17 +12,17 @@
 <body id="edit">
    <h1>Modifica</h1>
    <button id="done">Fatto</button>
-   <div contenteditable=""></div>
+   <textarea spellcheck="false"></textarea>
    <script>
       let done = document.querySelector('#done');
-      let div = document.querySelector('div');
+      let textarea = document.querySelector('textarea');
 
       done.addEventListener('click', () => {
-         preload.recipes.edit(JSON.parse(div.innerHTML));
+         preload.recipes.edit(JSON.parse(textarea.value));
          preload.window('close');
       });
 
-      div.innerHTML = JSON.stringify(preload.recipes.obj(), null, 3);
+      textarea.innerHTML = JSON.stringify(preload.recipes.obj(), null, 3);
    </script>
 </body>
 

@@ -1,12 +1,16 @@
 @use '../../Sasscript/scss/SS.scss';
 
-$dark-sky-blue: #84bcda;
-$madder-lake: #cc3e40;
-$jonquil: #ecc30b;
-$mandarin: #f37748;
-$star-command-blue: #067bc2;
+$blue: #122ee0;
+$capri: #00bbf9;
+$magenta-process: #ff1b8d;
+$school-bus-yellow: #fed700;
+$tangerine: #fb8500;
 
-$gradient: linear-gradient(90deg, $star-command-blue 10%, $dark-sky-blue 30%, $jonquil 50%, $mandarin 70%, $madder-lake 90%);
+@mixin gradient {
+   background: linear-gradient(90deg, $capri 10%, $blue 30%, $magenta-process 50%, $tangerine 70%, $school-bus-yellow 90%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
 
 :root {
    color: SS.$black;
@@ -30,14 +34,16 @@ body#edit {
 
    align-items: stretch;
    flex-direction: column;
+   overflow: hidden;
 
-   >div {
-      cursor: text;
+   >textarea {
+      border: 0;
+      box-shadow: none;
+      height: calc(100vh - 120px);
+      margin: 15px 0;
+      min-height: 75vh;
+      resize: none;
       outline: 0;
-   }
-
-   >#done {
-      margin-bottom: 15px;
    }
 }
 
@@ -47,13 +53,11 @@ body#index {
 
       align-items: center;
       flex-direction: column;
-      margin-bottom: 20px;
 
       >h1 {
-         background: $gradient;
+         @include gradient;
+
          font-size: 3.5rem;
-         -webkit-background-clip: text;
-         -webkit-text-fill-color: transparent;
       }
 
       >nav {
@@ -67,21 +71,16 @@ body#index {
             box-shadow: none;
             color: inherit;
          }
-
-         &:not([class])>* {
-            background: $gradient;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-         }
       }
    }
 
    main {
       @include SS.flex;
 
+      margin: 20px 0;
       justify-content: center;
 
-      >* {
+      >button {
          margin: 0 10px 10px 0;
       }
    }
@@ -103,15 +102,19 @@ body#index {
    }
 
    .mai {
-      color: $madder-lake;
+      color: $magenta-process;
    }
 
    .nuove {
-      color: $star-command-blue;
+      color: $capri;
    }
 
    .preferite {
-      color: $jonquil;
+      color: $tangerine;
+   }
+
+   .vecchie {
+      color: $blue;
    }
 }
 

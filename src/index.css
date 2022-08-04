@@ -7,7 +7,7 @@
   box-sizing: border-box;
   font-family: "Montserrat";
   scroll-behavior: smooth;
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
 }
 
 :root {
@@ -16,11 +16,15 @@
 }
 
 html {
+  border: 0;
+  margin: 0;
   min-height: 100vh;
   min-width: 100vw;
 }
 
 body {
+  border: 0;
+  margin: 0;
   min-height: 100vh;
   min-width: 100vw;
   margin: 0;
@@ -163,8 +167,7 @@ blockquote {
   padding: 8px 12.5px;
 }
 
-button, [button],
-[buttons] > * {
+button {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
@@ -173,23 +176,19 @@ button, [button],
   cursor: pointer;
   font-size: 1rem;
 }
-button:disabled, [button]:disabled,
-[buttons] > :disabled {
+button:disabled {
   border-color: #f0f0f0;
   color: #f0f0f0;
   cursor: not-allowed;
 }
-button:hover, [button]:hover,
-[buttons] > :hover {
-  background-color: #f0f0f0;
+button:hover {
+  background-color: #afafaf;
 }
-button[type=reset], [type=reset][button],
-[buttons] > [type=reset] {
+button[type=reset] {
   border-color: #ff0000;
   color: #ff0000;
 }
-button[type=submit], [type=submit][button],
-[buttons] > [type=submit] {
+button[type=submit] {
   border-color: #008000;
   color: #008000;
 }
@@ -287,13 +286,13 @@ input[type=reset] {
   cursor: pointer;
 }
 input[type=reset]:hover {
-  background-color: #f0f0f0;
+  background-color: #afafaf;
 }
 input[type=submit] {
   cursor: pointer;
 }
 input[type=submit]:hover {
-  background-color: #f0f0f0;
+  background-color: #afafaf;
 }
 
 kbd {
@@ -321,6 +320,7 @@ select {
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   padding: 0.3rem 0.5rem;
+  background-color: transparent;
   cursor: pointer;
   font-size: 1rem;
 }
@@ -348,6 +348,7 @@ textarea {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
+  background-color: transparent;
   font-size: 1rem;
   padding: 0.3rem 0.5rem;
 }
@@ -381,7 +382,7 @@ time {
 }
 
 ::-webkit-file-upload-button:hover {
-  background-color: #f0f0f0;
+  background-color: #afafaf;
 }
 
 ::-webkit-progress-bar {
@@ -411,41 +412,35 @@ form li {
   list-style-type: none;
 }
 
+header:first-child {
+  margin-top: 0;
+}
+
 p:first-child {
   margin-top: 0;
 }
 
-details[block] {
+details[SS-block] {
   border: 2.5px solid currentColor;
   border-radius: 6px;
   box-shadow: 1.3px 1.3px 0 currentColor;
   padding: 0.3rem 0.5rem;
 }
-details[block]:not([open]) {
+details[SS-block]:not([open]) {
   width: fit-content;
 }
 
-table[crossed] td,
-table[crossed] th,
-table[crossed] tr {
+table[SS-crossed] td,
+table[SS-crossed] th,
+table[SS-crossed] tr {
   border: 0;
 }
-table[crossed] td:first-child,
-table[crossed] th:first-child {
+table[SS-crossed] td:first-child,
+table[SS-crossed] th:first-child {
   border-right: 2.5px solid currentColor;
 }
-table[crossed] tr:first-child {
+table[SS-crossed] tr:first-child {
   border-bottom: 2.5px solid currentColor;
-}
-
-[button],
-[buttons] > * {
-  margin: 10px 0 0 10px;
-  text-decoration: none;
-}
-[button]:hover,
-[buttons] > *:hover {
-  background-color: transparent;
 }
 
 svg {
@@ -475,13 +470,16 @@ body#edit {
   flex-wrap: wrap;
   align-items: stretch;
   flex-direction: column;
+  overflow: hidden;
 }
-body#edit > div {
-  cursor: text;
+body#edit > textarea {
+  border: 0;
+  box-shadow: none;
+  height: calc(100vh - 120px);
+  margin: 15px 0;
+  min-height: 75vh;
+  resize: none;
   outline: 0;
-}
-body#edit > #done {
-  margin-bottom: 15px;
 }
 
 body#index header {
@@ -489,13 +487,12 @@ body#index header {
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 20px;
 }
 body#index header > h1 {
-  background: linear-gradient(90deg, #067bc2 10%, #84bcda 30%, #ecc30b 50%, #f37748 70%, #cc3e40 90%);
-  font-size: 3.5rem;
+  background: linear-gradient(90deg, #00bbf9 10%, #122ee0 30%, #ff1b8d 50%, #fb8500 70%, #fed700 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
 }
 body#index header > nav {
   border: 2.5px solid currentColor;
@@ -510,17 +507,13 @@ body#index header > nav > * {
   box-shadow: none;
   color: inherit;
 }
-body#index header > nav:not([class]) > * {
-  background: linear-gradient(90deg, #067bc2 10%, #84bcda 30%, #ecc30b 50%, #f37748 70%, #cc3e40 90%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 body#index main {
   display: flex;
   flex-wrap: wrap;
+  margin: 20px 0;
   justify-content: center;
 }
-body#index main > * {
+body#index main > button {
   margin: 0 10px 10px 0;
 }
 body#index #buttons {
@@ -545,13 +538,16 @@ body#index #buttons > button > img {
   height: 40px;
 }
 body#index .mai {
-  color: #cc3e40;
+  color: #ff1b8d;
 }
 body#index .nuove {
-  color: #067bc2;
+  color: #00bbf9;
 }
 body#index .preferite {
-  color: #ecc30b;
+  color: #fb8500;
+}
+body#index .vecchie {
+  color: #122ee0;
 }
 
 body#offline {

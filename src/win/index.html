@@ -13,29 +13,30 @@
    <header>
       <h1>Ricettario</h1>
       <nav>
-         <input type="text" autofocus placeholder="Cerca una ricetta...">
+         <input type="search" autofocus placeholder="Cerca...">
          <select></select>
       </nav>
    </header>
    <main></main>
    <div id="buttons">
       <button id="add" title="Aggiungi">
-         <img src="../assets/img/add.png" alt="Aggiungi">
+         <img src="../assets/img/plus.png" alt="Aggiungi">
       </button>
       <button id="edit" title="Modifica">
-         <img src="../assets/img/edit.png" alt="Modifica">
+         <img src="../assets/img/pencil.png" alt="Modifica">
       </button>
       <button id="stats" title="Statistiche">
-         <img src="../assets/img/stats.png" alt="Statistiche">
+         <img src="../assets/img/bars.png" alt="Statistiche">
       </button>
    </div>
    <script>
       let buttons = document.querySelector('#buttons');
       let html = document.querySelector('html');
-      let input = document.querySelector('input');
       let main = document.querySelector('main');
       let nav = document.querySelector('nav');
-      let select = document.querySelector('select');
+
+      let input = nav.querySelector('input');
+      let select = nav.querySelector('select');
 
       let search = (string = input.value, list = select.options[select.selectedIndex].innerHTML) => {
          let hide = button => {
@@ -72,27 +73,7 @@
          preload.window('open', e.id);
       });
       html.addEventListener('keyup', event => {
-         if (event.ctrlKey) {
-            switch (event.key) {
-               case 'e':
-                  preload.window('open', 'edit');
-
-                  break;
-               case 'z':
-                  preload.window('open', 'add');
-
-                  break;
-               case 'arrowup':
-                  window.scrollTo(0, 0);
-
-                  break;
-            }
-         } else switch (event.key) {
-            case '/':
-               input.focus();
-
-               break;
-         }
+         if (event.key === '/') input.focus();
       });
       input.addEventListener('keyup', () => search());
       select.addEventListener('click', () => search());
@@ -103,7 +84,7 @@
          let button = document.createElement('button');
 
          button.innerHTML = recipe;
-         button.addEventListener('click', () => {console.log(window.navigator.onLine)
+         button.addEventListener('click', () => {
             if (window.navigator.onLine) {
                window.open(preload.recipes.obj()[recipe].link);
             } else preload.window('open', 'offline');

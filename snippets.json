@@ -1,6 +1,9 @@
 {
-   "cwd": "C:/Users/titti/Desktop/Ricettario",
+   "settings": {
+      "installInSrcFolder": true
+   },
    "snippets": {
-      "json.js": "01/08/2022, 20:44"
+      "json.js": "2022-08-14 13:05:26",
+      "localstoragem.js": "2022-08-14 13:05:26"
    }
 }

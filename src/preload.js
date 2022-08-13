@@ -1,32 +1,21 @@
-const { contextBridge, ipcRenderer } = require('electron');
-const { join } = require('path');
-const { readFileSync, writeFileSync } = require('fs');
+require('./update');
 
-let path = {
-   recipes: join(__dirname, 'database/recipes/main.json'),
-};
+const { join } = require('path');
+
+const { contextBridge, ipcRenderer } = require('electron');
+
+const Json = require('./snippets/json');
+const Ricettario = require('./core/ricettario');
+
+const ricettario = new Ricettario();
 
 contextBridge.exposeInMainWorld('preload', {
-   recipes: {
-      add: (name, recipe) => {
-         let recipes = JSON.parse(readFileSync(path.recipes, 'utf8'));
-
-         recipes[name] = recipe;
-
-         writeFileSync(path.recipes, JSON.stringify(recipes, null, 3), 'utf8');
-      },
-      edit: obj => {
-         try {
-            writeFileSync(path.recipes, JSON.stringify(obj, null, 3), 'utf8');
-         } catch {}
-      },
-      lists: JSON.parse(readFileSync(join(__dirname, 'database/recipes/lists.json'), 'utf8')),
-      obj: () => {
-         return JSON.parse(readFileSync(path.recipes, 'utf8'));
-      }
+   types: new Json(join(__dirname, 'data/types.json')).value,
+   ricettario: {
+      add: (name, link, type) => ricettario.add(name, link, type),
+      edit: obj => ricettario.edit(obj),
+      count: name => ricettario.count(name),
+      value: ricettario.value
    },
-   stats: JSON.parse(readFileSync(join(__dirname, 'database/stats.json'), 'utf8')),
-   window: (action, win) => {
-      ipcRenderer.send('window', action, win);
-   }
+   ipc: win => ipcRenderer.send('win', win)
 });

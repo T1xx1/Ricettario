@@ -1,52 +1,19 @@
-const { join } = require('path');
+const Ricettario = require('./core/ricettario');
 
-const json = require('../snippets/json.js');
+const ricettario = new Ricettario();
 
-let database = join(__dirname, 'database');
 let month = 2629800000;
 
-let path = join(database, 'recipes/main.json');
+for (let recipe in ricettario.value) {
+   if (ricettario.value[recipe].date && ricettario.value[recipe].type === 'nuova' && (new Date() - new Date(ricettario.value[recipe].date)) > month) delete ricettario.value[recipe].type;
+}
 
-let recipes = json.read(path);
-
-// New -> neverdone
-for (let recipe in recipes) {
-   if (recipes[recipe].date && recipes[recipe].list) {
-      if ((new Date() - new Date(recipes[recipe].date.split('/').reverse().join('-'))) > month && recipes[recipe].list === 'nuove') recipes[recipe].list = 'mai';
+for (let recipe in ricettario.value) {
+   if (ricettario.value[recipe].date && ricettario.value[recipe].type === undefined && (new Date() - new Date(ricettario.value[recipe].date)) > month) {
+      if ([undefined, 0].includes(ricettario.value[recipe].count)) {
+         ricettario.value[recipe].type = 'mai fatta';
+      } else ricettario.value[recipe].type = 'vecchia';
    }
 }
 
-// Neverdone -> old
-for (let recipe in recipes) {
-   if (recipes[recipe].date && recipes[recipe].list) {
-      if ((new Date() - new Date(recipes[recipe].date.split('/').reverse().join('-'))) > month && recipes[recipe].list === 'mai') recipes[recipe].list = 'vecchie';
-   }
-}
-
-json.write(path, recipes);
-
-// Backup
-path = join(database, 'recipes/backup.json');
-
-let backup = json.read(path);
-
-for (let date in backup) {
-   if ((new Date() - new Date(date.split('/').reverse().join('-'))) > month) delete backup[date];
-}
-
-backup[new Date().toLocaleDateString('it', {
-   day: '2-digit',
-   month: '2-digit',
-   year: 'numeric',
-})] = recipes;
-
-json.write(path, backup);
-
-// Stats
-path = join(database, 'stats.json');
-
-let stats = json.read(path);
-
-stats.length = Object.keys(recipes).length;
-
-json.write(path, stats);
+ricettario.write();

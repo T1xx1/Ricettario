@@ -6,39 +6,32 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Ricettario</title>
-   <link rel="stylesheet" href="../index.css">
+   <link rel="stylesheet" href="./style.css">
 </head>
 
 <body id="index">
    <header>
       <h1>Ricettario</h1>
       <nav>
-         <input type="search" autofocus placeholder="Cerca...">
+         <input type="search" autofocus placeholder="Cerca una ricetta...">
          <select></select>
       </nav>
    </header>
    <main></main>
-   <div id="buttons">
-      <button id="add" title="Aggiungi">
-         <img src="../assets/img/plus.png" alt="Aggiungi">
-      </button>
-      <button id="edit" title="Modifica">
-         <img src="../assets/img/pencil.png" alt="Modifica">
-      </button>
-      <button id="stats" title="Statistiche">
-         <img src="../assets/img/bars.png" alt="Statistiche">
-      </button>
+   <div id="imgs">
+      <img src="./assets/img/plus.png" id="add" alt="Aggiungi" title="Aggiungi">
+      <img src="./assets/img/pencil.png" id="edit" alt="Modifica" title="Modifica">
    </div>
    <script>
-      let buttons = document.querySelector('#buttons');
       let html = document.querySelector('html');
+      let imgs = document.querySelector('#imgs');
       let main = document.querySelector('main');
       let nav = document.querySelector('nav');
 
       let input = nav.querySelector('input');
       let select = nav.querySelector('select');
 
-      let search = (string = input.value, list = select.options[select.selectedIndex].innerHTML) => {
+      let search = (string = input.value, type = select.options[select.selectedIndex].innerHTML) => {
          let hide = button => {
             button.setAttribute('hidden', '');
          };
@@ -46,18 +39,16 @@
             button.removeAttribute('hidden');
          };
 
-         list = list.toLowerCase();
-
-         if (list === 'nessuna') {
+         if (type === 'nessuna') {
             nav.removeAttribute('class');
-         } else nav.className = list;
+         } else nav.className = type;
 
          main.childNodes.forEach(button => {
             if (button.innerHTML.toLowerCase().includes(string.toLowerCase())) {
-               if (list === preload.recipes.lists[0]) {
+               if (type === preload.types[0]) {
                   show(button);
                } else {
-                  if (list === button.className) {
+                  if (type === button.className) {
                      show(button);
                   } else hide(button);
                }
@@ -65,32 +56,28 @@
          });
       };
 
-      buttons.addEventListener('click', event => {
-         let e = event.target;
-
-         if (e.localName === 'img') e = e.parentNode;
-
-         preload.window('open', e.id);
+      imgs.childNodes.forEach(img => {
+         img.addEventListener('click', e => preload.ipc(`pages/${event.target.id}.html`));
       });
-      html.addEventListener('keyup', event => {
-         if (event.key === '/') input.focus();
+      html.addEventListener('keyup', e => {
+         if (e.key === '/') input.focus();
       });
       input.addEventListener('keyup', () => search());
       select.addEventListener('click', () => search());
 
-      preload.recipes.lists.forEach(list => select.innerHTML += `<option>${list}</option>`);
+      preload.types.forEach(type => select.innerHTML += `<option>${type}</option>`);
 
-      for (let recipe in preload.recipes.obj()) {
+      for (let recipe in preload.ricettario.value) {
          let button = document.createElement('button');
 
          button.innerHTML = recipe;
          button.addEventListener('click', () => {
-            if (window.navigator.onLine) {
-               window.open(preload.recipes.obj()[recipe].link);
-            } else preload.window('open', 'offline');
+            preload.ricettario.count(recipe);
+
+            window.open(preload.ricettario.value[recipe].link)
          });
 
-         if (preload.recipes.obj()[recipe].list) button.className = preload.recipes.obj()[recipe].list;
+         if (preload.ricettario.value[recipe].type) button.className = preload.ricettario.value[recipe].type;
 
          main.appendChild(button);
       }

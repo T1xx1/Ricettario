@@ -1,0 +1,118 @@
+@use '../../Sasscript/scss/ss.scss';
+
+$blue: #122ee0;
+$capri: #00bbf9;
+$magenta-process: #ff1b8d;
+$school-bus-yellow: #fed700;
+$tangerine: #fb8500;
+
+:root {
+   color-scheme: light;
+}
+
+#add,
+#edit {
+   >h1 {
+      margin-bottom: 15px;
+   }
+
+   >form {
+      @include ss.reset;
+
+      border-radius: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 15px;
+   }
+}
+
+#edit {
+   overflow: hidden;
+
+   >form {
+      align-items: stretch;
+      grid-template-rows: 1fr calc(100vh - 150px);
+      overflow: hidden;
+   }
+
+   textarea {
+      @include ss.reset;
+
+      resize: none;
+      outline: 0;
+   }
+}
+
+#index {
+   header {
+      @include ss.flex;
+
+      align-items: center;
+      flex-direction: column;
+      margin-bottom: 25px;
+
+      >h1 {
+         background: linear-gradient(90deg, $capri 10%, $blue 30%, $magenta-process 50%, $tangerine 70%, $school-bus-yellow 90%);
+         font-size: 3.5rem;
+         -webkit-background-clip: text;
+         -webkit-text-fill-color: transparent;
+      }
+
+      >nav {
+         @include ss.border('inline');
+         @include ss.flex;
+
+         margin: 0;
+
+         >* {
+            border: 0;
+            box-shadow: none;
+
+            color: inherit;
+         }
+      }
+   }
+
+   main {
+      @include ss.flex;
+
+      justify-content: center;
+
+      >button {
+         margin: 0 10px 10px 0;
+      }
+   }
+
+   #imgs {
+      @include ss.flex;
+
+      background-color: ss.color('white');
+      bottom: 0;
+      padding: 18px 20px;
+      position: fixed;
+      left: 0;
+      width: 100%;
+
+      >img {
+         @include ss.imgbutton(55px, 5px);
+
+         margin-right: 15px;
+      }
+   }
+
+   .mai {
+      color: $magenta-process;
+   }
+
+   .nuova {
+      color: $capri;
+   }
+
+   .preferita {
+      color: $tangerine;
+   }
+
+   .vecchia {
+      color: $blue;
+   }
+}

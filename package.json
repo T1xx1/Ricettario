@@ -1,7 +1,8 @@
 {
-   "name": "ricettario",
-   "productName": "ricettario",
-   "version": "1.0.0",
+   "name": "Ricettario",
+   "productName": "Ricettario",
+   "version": "1.1.0",
+   "description": "Tutti i link delle ricette in un app",
    "main": "src/index.js",
    "scripts": {
       "start": "electron-forge start",
@@ -18,7 +19,9 @@
    "license": "MIT",
    "config": {
       "forge": {
-         "packagerConfig": {},
+         "packagerConfig": {
+            "icon": "./src/assets/favicon.ico"
+         },
          "makers": [
             {
                "name": "@electron-forge/maker-squirrel",
